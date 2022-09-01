@@ -38,15 +38,17 @@ export default {
   display: block;
 }
 section{
-  height: 30%;
+  height: 300px;
+  width: 1687px;
   margin-bottom: 130px;
   position: relative;
   overflow:hidden;
 }
 .more{
   position:absolute;
-  right: 80px;
-  top:10px;
-  color: white;
+  left: 95%;
+  top:5%;
+  color: gray;
 }
+
 </style>

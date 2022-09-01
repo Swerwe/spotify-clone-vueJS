@@ -106,13 +106,14 @@ export default {
   border-color: transparent transparent transparent black;
 }
 
-/* we will explain what these classes do next! */
+
 .v-enter-active,
 .v-leave-active {
-  transition: transform 500ms;
+  transition: all 300ms;
+
+
 
 }
-
 .v-enter-from,
 .v-leave-to {
   transform:translateY(8px);

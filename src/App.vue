@@ -2,12 +2,15 @@
   <div class="app">
 
     <div class="Root__top-container">
-      <div class="Root__nav-bar"></div>
+      <nav-bar :home="home" :search = "search" :lib="lib"></nav-bar>
 
       <div class="Root__main-content">
-        <div class="Root__top-bar"></div>
+        <div class="Root__top-bar">
+          <svg class="back"></svg>
+          <svg class="front"></svg>
+        </div>
         <content-section
-            v-bind:sectionName="name"
+            v-bind:sectionName="sectionNames[item]"
             v-for="item of [...Array(3).keys()]"
             :key = item
             :tracks = tracksList.slice(8*item,8*item+8)
@@ -28,12 +31,21 @@
 <script>
 import ContentSection from "@/components/UI/MainContentSection";
 import tracks from "@/data/tracks";
+import NavBar from "@/components/UI/NavBar";
+import homeFile from '@/components/UI/icons/homepage.svg'
+import searchFile from '@/components/UI/icons/search.png'
+import libFile from '@/components/UI/icons/lib.png'
 export default {
-  components: {ContentSection},
+  components: {NavBar, ContentSection},
   data(){
     return {
-      name:"Spotify Playlists",
-      tracksList:tracks
+
+      tracksList:tracks,
+      home:homeFile,
+      search:searchFile,
+      lib:libFile,
+      sectionNames:['Sleep','Mood','Focus']
+
     }
   }
 }
@@ -56,6 +68,7 @@ export default {
   margin: 0;
   height: 100%;
   overflow: hidden;
+
 }
 
 .Root__top-container{
@@ -63,29 +76,24 @@ export default {
   min-width: 100%;
   height: 100%;
   min-height: 100%;
+  display: flex;
+  justify-content: flex-start;
 
 }
 .Root__top-bar{
-  height: 6%;
+  height: 64px;
   width: 100%;
+  min-height: 32px;
   background-color: rgba(16,16,16,0.5);
   display: inline-block;
-
-
-}
-.Root__nav-bar{
-  vertical-align: top;
   position: relative;
-  width: 12%;
-  height: 100%;
-  background-color: rgb(0,0,0);
-  display: inline-block;
+
 }
+
 .Root__main-content{
   height: 100%;
-  display: inline-block;
   background-color: rgb(29,29,29);
-  width: 88%;
+  width: 100%;
   overflow-y:auto;
 }
 ::-webkit-scrollbar {
@@ -93,6 +101,28 @@ export default {
 }
 ::-webkit-scrollbar-thumb{
   background-color: rgb(90,90,90);
+}
+.back{
+  width: 32px;
+  height: 32px;
+  background-image: url("./components/UI/icons/back.png");
+  background-size: cover;
+  border-radius: 40px;
+  cursor: pointer;
+  position: absolute;
+  margin-left: 20px;
+  margin-top: 18px;
+}
+.front{
+  width: 32px;
+  height: 32px;
+  background-image: url("./components/UI/icons/forward.png");
+  background-size: cover;
+  border-radius: 40px;
+  cursor: pointer;
+  position: absolute;
+  margin-left: 60px;
+  margin-top: 18px;
 }
 
 </style>
