@@ -1,52 +1,74 @@
 <template>
   <div class="app">
-
     <div class="Root__top-container">
-      <nav-bar :home="home" :search = "search" :lib="lib"></nav-bar>
+      <nav-bar @select="selectPage" :nav-selects="navSelects"></nav-bar>
 
-      <div class="Root__main-content">
-        <div class="Root__top-bar">
-          <svg class="back"></svg>
-          <svg class="front"></svg>
-        </div>
-        <content-section
-            v-bind:sectionName="sectionNames[item]"
-            v-for="item of [...Array(3).keys()]"
-            :key = item
-            :tracks = tracksList.slice(8*item,8*item+8)
-        ></content-section>
+      <home-page @update:src="(data) => {
+                     this.audioSrc = data.link
+                     this.audioTitle=data.title
+                     this.audioArtist = data.artist
+                     this.audioImg = data.img
+                   }"
+                 v-show="navSelects.home"></home-page>
+      <search-page v-show="navSelects.search"
+                   @update:src="(data) => {
+                     this.audioSrc = data.link
+                     this.audioTitle=data.title
+                     this.audioArtist = data.artist
+                     this.audioImg = data.img
+                   }"
 
-
-
-      </div>
-
-
-
+      ></search-page>
+      <lib-page v-show="navSelects.yourlibrary"></lib-page>
     </div>
+
+    <custom-player
+        :src="audioSrc"
+        :title="audioTitle"
+        :artist="audioArtist"
+        :img="audioImg"
+    ></custom-player>
   </div>
 
 
 </template>
 
 <script>
-import ContentSection from "@/components/UI/MainContentSection";
-import tracks from "@/data/tracks";
-import NavBar from "@/components/UI/NavBar";
-import homeFile from '@/components/UI/icons/homepage.svg'
-import searchFile from '@/components/UI/icons/search.png'
-import libFile from '@/components/UI/icons/lib.png'
+
+import NavBar from "@/components/UI/global/NavBar";
+import CustomPlayer from "@/components/UI/global/player";
+import HomePage from "@/components/UI/home/home-page";
+import SearchPage from "@/components/UI/search/search-page";
+import LibPage from "@/components/UI/lib/lib-page";
 export default {
-  components: {NavBar, ContentSection},
+  components: {LibPage, SearchPage,HomePage, CustomPlayer, NavBar},
   data(){
     return {
 
-      tracksList:tracks,
-      home:homeFile,
-      search:searchFile,
-      lib:libFile,
-      sectionNames:['Sleep','Mood','Focus']
+
+      sectionNames:['Sleep','Mood','Focus'],
+      audioSrc:'',
+      audioTitle:'',
+      audioArtist:'',
+      audioImg:'',
+      navSelects:{
+        home:true,
+        search:false,
+        yourlibrary:false
+      }
 
     }
+  },
+  methods:{
+    selectPage:function (d){
+      for (let key in this.navSelects){
+        this.navSelects[key] = false
+      }
+      this.navSelects[d[0]] = true;
+
+    }
+
+
   }
 }
 </script>
@@ -57,6 +79,18 @@ export default {
   padding: 0;
   box-sizing: border-box;
   height: 100%;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  user-drag: none;
+  -webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 
 }
 @font-face {
@@ -68,7 +102,6 @@ export default {
   margin: 0;
   height: 100%;
   overflow: hidden;
-
 }
 
 .Root__top-container{
@@ -80,49 +113,15 @@ export default {
   justify-content: flex-start;
 
 }
-.Root__top-bar{
-  height: 64px;
-  width: 100%;
-  min-height: 32px;
-  background-color: rgba(16,16,16,0.5);
-  display: inline-block;
-  position: relative;
 
-}
 
-.Root__main-content{
-  height: 100%;
-  background-color: rgb(29,29,29);
-  width: 100%;
-  overflow-y:auto;
-}
+
 ::-webkit-scrollbar {
   width: 15px;
 }
 ::-webkit-scrollbar-thumb{
   background-color: rgb(90,90,90);
 }
-.back{
-  width: 32px;
-  height: 32px;
-  background-image: url("./components/UI/icons/back.png");
-  background-size: cover;
-  border-radius: 40px;
-  cursor: pointer;
-  position: absolute;
-  margin-left: 20px;
-  margin-top: 18px;
-}
-.front{
-  width: 32px;
-  height: 32px;
-  background-image: url("./components/UI/icons/forward.png");
-  background-size: cover;
-  border-radius: 40px;
-  cursor: pointer;
-  position: absolute;
-  margin-left: 60px;
-  margin-top: 18px;
-}
+
 
 </style>

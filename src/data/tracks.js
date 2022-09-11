@@ -1,24 +1,11 @@
 export default [
     {
         id: 916424,
-        title: 'Without Me',
-        artist: 'Eminem',
-        img: 'https://e-cdns-images.dzcdn.net/images/artist/ec3c8ed67427064c70f67e5815b74cef/500x500-000000-80-0-0.jpg',
-        link: 'https://cdns-preview-c.dzcdn.net/stream/c-cca63b2c92773d54e61c5b4d17695bd2-8.mp3'
-    },
-    {
-        id: 1109731,
-        title: 'Lose Yourself',
-        artist: 'Eminem',
-        img: 'https://e-cdns-images.dzcdn.net/images/artist/e2b36a9fda865cb2e9ed1476b6291a7d/500x500-000000-80-0-0.jpg',
-        link: 'https://cdns-preview-1.dzcdn.net/stream/c-13039fed16a173733f227b0bec631034-12.mp3'
-    },
-    {
-        id: 1109737,
-        title: 'The Real Slim Shady',
-        artist: 'Eminem',
-        img: 'https://e-cdns-images.dzcdn.net/images/artist/e2b36a9fda865cb2e9ed1476b6291a7d/500x500-000000-80-0-0.jpg',
-        link: 'https://cdns-preview-d.dzcdn.net/stream/c-d28ee67c24d60e740866c7709d772f55-12.mp3'
+        title: 'Хлопай',
+        artist: 'Instasamka',
+        img: 'https://muzati.net/_ld/156/54706204.jpg',
+        link: 'https://s1.muzati.net/files/mp3/instasamka_-_moneyken_love_muzati.net_128.mp3'
+
     },
     {
         id: 6461432,

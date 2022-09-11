@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import HomeIcon from "@/components/UI/HomeIcon";
+import HomeIcon from "@/components/UI/icons/HomeIcon";
 export default {
   name:'home-nav',
   components: {HomeIcon},

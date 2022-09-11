@@ -1,6 +1,7 @@
 <template>
 
-  <svg class="icon" @mouseover="color = 'white'" @mouseleave="color = 'rgb(179,179,179)'" xmlns="http://www.w3.org/2000/svg" version="1.0" width="512.000000pt" height="512.000000pt" viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet">
+  <svg class="icon" @mouseover="color = 'white'" @mouseleave="color = 'rgb(179,179,179)'"
+       xmlns="http://www.w3.org/2000/svg" version="1.0" width="512.000000pt" height="512.000000pt" viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet">
     <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" fill="#000000" stroke="none">
       <path :fill="color" d="M565 4791 c-91 -23 -173 -90 -215 -176 l-25 -50 0 -2005 0 -2005 23 -45 c35 -72 75 -114 144 -151 l63 -34 245 0 245 0 63 34 c70 38 100 69 140 145 l27 51 0 2005 0 2005 -34 63 c-37 69 -80 109 -151 144 -42 21 -59 23 -270 25 -124 1 -238 -2 -255 -6z"/>
       <path :fill="color" d="M1845 4791 c-91 -23 -173 -90 -215 -176 l-25 -50 0 -2005 0 -2005 23 -45 c35 -72 75 -114 144 -151 l63 -34 245 0 245 0 63 34 c70 38 100 69 140 145 l27 51 0 2005 0 2005 -34 63 c-37 69 -80 109 -151 144 -42 21 -59 23 -270 25 -124 1 -238 -2 -255 -6z"/>

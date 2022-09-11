@@ -4,16 +4,18 @@
     <div class="Name">{{ trackData.title }}</div>
     <div class="artist">{{ trackData.artist }}</div>
     <Transition>
-    <div class="play" v-show="show">
-        <div class="play-triangle"></div>
+    <div class="play" v-show="show" @click="playSong">
+        <play-triangle class="play-triangle"></play-triangle>
     </div>
     </Transition>
   </div>
 </template>
 
 <script>
+import PlayTriangle from "@/components/UI/icons/play-triangle";
 export default {
   name:"component-item",
+  components: {PlayTriangle},
   data(){
     return{
       show:false
@@ -27,8 +29,10 @@ export default {
     }
   },
   methods:{
-    loadImg(e){
-      console.log(e)
+
+    playSong(){
+      this.$emit('play',this.trackData)
+
     }
   }
 }
@@ -97,13 +101,8 @@ export default {
   height: 52px;
 }
 .play-triangle{
-  width: 16px;
-  height: 16px;
   margin-left: 37%;
   margin-top: 33%;
-  border-style: solid;
-  border-width: 8px 0 8px 16px;
-  border-color: transparent transparent transparent black;
 }
 
 

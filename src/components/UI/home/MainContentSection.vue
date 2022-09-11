@@ -2,13 +2,12 @@
   <section>
     <div class="section-name">{{sectionName}}</div>
     <div class="more">SEE ALL</div>
-    <component-item v-for="track of tracks" :key="track.id" v-bind:trackData="track"></component-item>
-
+    <component-item v-for="track of tracks" :key="track.id" v-bind:trackData="track" @play="(data)=>$emit('play',data)"></component-item>
   </section>
 </template>
 
 <script>
-import ComponentItem from "@/components/UI/ContentSectionItem";
+import ComponentItem from "@/components/UI/home/ContentSectionItem";
 export default {
   name:"content-section",
   components: {ComponentItem},
@@ -39,7 +38,7 @@ export default {
 }
 section{
   height: 300px;
-  width: 1687px;
+  width: 1250px;
   margin-bottom: 130px;
   position: relative;
   overflow:hidden;
@@ -48,6 +47,7 @@ section{
   position:absolute;
   left: 95%;
   top:5%;
+  width: 100px;
   color: gray;
 }
 
