@@ -37,7 +37,7 @@ export default {
   methods:{
     getData:async function (){
       this.data=[]
-      let songs = await fetch('http://localhost:8100',{
+      let songs = await fetch('https://protected-retreat-88203.herokuapp.com',{
         method:'POST',
         body:this.request
       })
