@@ -16,10 +16,8 @@ export default {
 <style scoped>
 .icon{
   background-size: cover;
-  margin-top:2%;
-  margin-left: 22px;
-  width: 131px;
-  height: 40px;
+  width: 111px;
+  height: 35px;
   max-width: 80%;
 }
 

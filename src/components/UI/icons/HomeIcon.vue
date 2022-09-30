@@ -1,12 +1,10 @@
 <template>
-  <svg class="icon" @mouseover="color = 'white'" @mouseleave="color = 'rgb(179,179,179)'"
-       xmlns="http://www.w3.org/2000/svg" version="1.0" width="512.000000pt" height="512.000000pt" viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet">
 
-    <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" fill="#000000" stroke="none">
-      <path xmlns="http://www.w3.org/2000/svg" :fill="color" d="M2463 4679 c-50 -15 -1930 -1146 -1970 -1186 -19 -20 -47 -61 -62 -92 l-26 -56 -3 -1255 c-2 -877 1 -1271 9 -1308 37 -182 198 -338 382 -372 36 -7 224 -10 514 -8 l458 3 63 34 c70 38 100 69 140 145 l27 51 5 512 c5 497 6 512 26 539 11 15 33 37 48 48 27 21 38 21 486 21 448 0 459 0 486 -21 15 -11 37 -33 48 -48 20 -27 21 -42 26 -539 5 -506 5 -512 28 -557 35 -72 75 -114 144 -151 l63 -34 458 -3 c290 -2 478 1 514 8 188 34 350 195 383 381 7 36 9 496 8 1305 l-3 1249 -26 55 c-14 30 -41 71 -60 91 -40 42 -1921 1173 -1977 1189 -45 12 -145 12 -189 -1z"/>
-    </g>
-  </svg>
-</template>
+    <svg
+        @mouseover="color = 'white'" @mouseleave="color = 'rgb(179,179,179)'"
+        role="img" height="24" width="24" class="icon" aria-hidden="true" viewBox="0 0 24 24"><path :fill="color" d="M12.5 3.247a1 1 0 00-1 0L4 7.577V20h4.5v-6a1 1 0 011-1h5a1 1 0 011 1v6H20V7.577l-7.5-4.33zm-2-1.732a3 3 0 013 0l7.5 4.33a2 2 0 011 1.732V21a1 1 0 01-1 1h-6.5a1 1 0 01-1-1v-6h-3v6a1 1 0 01-1 1H3a1 1 0 01-1-1V7.577a2 2 0 011-1.732l7.5-4.33z"></path></svg>
+
+ </template>
 
 <script>
 export default {
@@ -24,7 +22,6 @@ export default {
   position: absolute;
   display: inline-block;
   vertical-align: bottom;
-  left: 15%;
   width: 24px;
   height: 24px;
   background-size: cover;

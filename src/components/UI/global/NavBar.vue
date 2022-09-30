@@ -1,19 +1,29 @@
 <template>
   <div class="Root__nav-bar">
-    <spotify-icon></spotify-icon>
-    <div class="bar" @click = 'clickHandler'>
-      <home-icon></home-icon>
+    <spotify-icon class="spot_icon"></spotify-icon>
+    <div class="bar homebar" @click = 'clickHandler'>
+      <home-icon class="navicon"></home-icon>
       <div class="name" ref="home"
       >Home</div>
     </div>
-    <div class="bar" @click = 'clickHandler'>
-      <search-icon></search-icon>
+    <div class="bar searchbar" @click = 'clickHandler'>
+      <search-icon class="navicon"></search-icon>
       <div class="name"  ref="search">Search</div>
     </div>
-    <div class="bar" @click = 'clickHandler'>
-      <lib-icon></lib-icon>
+    <div class="bar libbar" @click = 'clickHandler'>
+      <lib-icon class="navicon"></lib-icon>
       <div class="name" ref="yourlibrary">Your Library</div>
     </div>
+    <div class="bar playbar">
+      <playlist-create-icon class="playlist"></playlist-create-icon>
+      <div class="name">Create Playlist</div>
+    </div>
+    <div class="bar likedbar">
+      <liked-songs-icon class="liked-songs"></liked-songs-icon>
+      <div class="name">Liked Songs</div>
+    </div>
+
+
 
   </div>
 
@@ -24,10 +34,12 @@ import SpotifyIcon from "@/components/UI/icons/SpotifyIcon";
 import HomeIcon from "@/components/UI/icons/HomeIcon";
 import SearchIcon from "@/components/UI/icons/SearchIcon";
 import LibIcon from "@/components/UI/icons/LibIcon";
+import PlaylistCreateIcon from "@/components/UI/icons/PlaylistCreateIcon";
+import LikedSongsIcon from "@/components/UI/icons/LikedSongsIcon";
 
 export default {
   name:'nav-bar',
-  components: {LibIcon, SearchIcon, HomeIcon, SpotifyIcon},
+  components: {LikedSongsIcon, PlaylistCreateIcon, LibIcon, SearchIcon, HomeIcon, SpotifyIcon},
   props:{
     navSelects:{
       type:Object,
@@ -59,9 +71,8 @@ export default {
 }
 .bar{
   position: relative;
-  margin-top: 20px;
   display: block;
-  height: 3%;
+  height: 20px;
   cursor: pointer;
 
 }
@@ -70,10 +81,10 @@ export default {
   color: #a7a7a7;
   display: inline-block;
   font-family: Montserrat;
-  font-weight: bold;
-  font-size: 0.875rem;
-  left: 35%;
-  top: 4px;
+  font-weight: 700;
+  font-size: 0.685rem;
+  left: 55px;
+  top: 3px;
 
 }
 .name:hover{
@@ -83,7 +94,35 @@ export default {
 .svg path{
   fill: white;
 }
-.selected{
-  color: white;
+.spot_icon{
+  margin-left: 21px;
+  margin-top: 18px;
+  position: relative;
+}
+.navicon{
+  width: 20px;
+  height: 20px;
+  left: 20px;
+}
+.homebar{
+  margin-top: 23px;
+}
+.searchbar{
+  margin-top: 15px;
+}
+.libbar{
+  margin-top: 14px;
+}
+.playlist{
+  margin-left: 20px;
+}
+.liked-songs{
+  margin-left: 20px;
+}
+.playbar{
+  margin-top:33px;
+}
+.likedbar{
+  margin-top: 15px;
 }
 </style>

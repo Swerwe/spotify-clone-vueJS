@@ -69,7 +69,7 @@ export default {
 
       this.audio.pause()
       this.audio = new Audio()
-      this.audio.setAttribute('preload','auto')
+      this.audio.setAttribute('preload','none')
       this.audio.src = this.src
       this.audio.ontimeupdate = ()=>{
         this.currentTime=this.audio.currentTime
@@ -106,7 +106,7 @@ export default {
       duration:0,
       thumbOffset:0,
       isDragging:false,
-      muted:false
+      muted:false,
     }
   },
   methods:{

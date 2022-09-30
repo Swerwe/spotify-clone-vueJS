@@ -3,30 +3,20 @@
     <div class="Root__top-container">
       <nav-bar @select="selectPage" :nav-selects="navSelects"></nav-bar>
 
-      <home-page @update:src="(data) => {
-                     this.audioSrc = data.link
-                     this.audioTitle=data.title
-                     this.audioArtist = data.artist
-                     this.audioImg = data.img
-                   }"
+      <home-page @update:src="update"
                  v-show="navSelects.home"></home-page>
       <search-page v-show="navSelects.search"
-                   @update:src="(data) => {
-                     this.audioSrc = data.link
-                     this.audioTitle=data.title
-                     this.audioArtist = data.artist
-                     this.audioImg = data.img
-                   }"
+                   @update:src="update"
 
       ></search-page>
       <lib-page v-show="navSelects.yourlibrary"></lib-page>
     </div>
 
     <custom-player
-        :src="audioSrc"
-        :title="audioTitle"
-        :artist="audioArtist"
-        :img="audioImg"
+        :src="$store.state.audio.audioSrc"
+        :title="$store.state.audio.audioTitle"
+        :artist="$store.state.audio.audioArtist"
+        :img="$store.state.audio.audioImg"
     ></custom-player>
   </div>
 
@@ -44,7 +34,6 @@ export default {
   components: {LibPage, SearchPage,HomePage, CustomPlayer, NavBar},
   data(){
     return {
-
 
       sectionNames:['Sleep','Mood','Focus'],
       audioSrc:'',
@@ -66,6 +55,12 @@ export default {
       }
       this.navSelects[d[0]] = true;
 
+    },
+    update: function (data){
+      this.$store.commit('setAudioSrc',data.link)
+      this.$store.commit('setAudioTitle',data.title)
+      this.$store.commit('setAudioArtist',data.artist)
+      this.$store.commit('setAudioImg',data.img)
     }
 
 

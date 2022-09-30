@@ -21,16 +21,7 @@ export default {
 
 <style scoped>
 .Root__top-bar{
-  height: 64px;
-  width: 100%;
-  min-height: 32px;
-  background-color: rgba(16,16,16,0.5);
-  display: inline-block;
-  position: relative;
-
-}
-.Root__top-bar{
-  height: 64px;
+  height: 50px;
   width: 100%;
   min-height: 32px;
   background-color: rgba(16,16,16,0.5);
@@ -47,26 +38,26 @@ export default {
   overflow-x: hidden ;
 }
 .back{
-  width: 32px;
-  height: 32px;
+  width: 24px;
+  height: 24px;
   background-image: url("../icons/back.png");
   background-size: cover;
   border-radius: 40px;
   cursor: pointer;
   position: absolute;
-  margin-left: 20px;
-  margin-top: 18px;
+  margin-left: 31px;
+  margin-top: 12px;
 }
 .front{
-  width: 32px;
-  height: 32px;
+  width: 24px;
+  height: 24px;
   background-image: url("../icons/forward.png");
   background-size: cover;
   border-radius: 40px;
   cursor: pointer;
   position: absolute;
-  margin-left: 60px;
-  margin-top: 18px;
+  margin-left: 70px;
+  margin-top: 12px;
 }
 .content{
 
