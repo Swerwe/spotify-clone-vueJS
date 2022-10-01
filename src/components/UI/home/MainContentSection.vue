@@ -2,7 +2,12 @@
   <section>
     <div class="section-name">{{sectionName}}</div>
     <div class="more">SEE ALL</div>
-    <component-item v-for="track of tracks" :key="track.id" v-bind:trackData="track" @play="(data)=>$emit('play',data)"></component-item>
+    <component-item
+        v-for="album in albums"
+        :key="album"
+        :album="album"
+        :title="album.albumTitle"
+        @play="(data)=>$emit('play',data)"></component-item>
   </section>
 </template>
 
@@ -11,15 +16,17 @@ import ComponentItem from "@/components/UI/home/ContentSectionItem";
 export default {
   name:"content-section",
   components: {ComponentItem},
+  data(){
+    return{
+      albums:this.$store.state.albums[this.sectionName]
+    }
+  },
+
   props:{
     sectionName:{
       type:String,
       required:true
     },
-    tracks:{
-      type:Array,
-      required: true
-    }
   }
 
 }
@@ -39,7 +46,7 @@ export default {
 section{
   height: 300px;
   width: 1250px;
-  margin-bottom: 130px;
+  margin-top: 50px;
   position: relative;
   overflow:hidden;
 }

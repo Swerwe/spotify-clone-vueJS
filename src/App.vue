@@ -61,6 +61,7 @@ export default {
       this.$store.commit('setAudioTitle',data.title)
       this.$store.commit('setAudioArtist',data.artist)
       this.$store.commit('setAudioImg',data.img)
+      this.$store.commit('setPlayingStatus',true)
     }
 
 

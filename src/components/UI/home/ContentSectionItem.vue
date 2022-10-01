@@ -1,8 +1,8 @@
 <template>
   <div class="item" @mouseover="show=true" @mouseleave="show=false">
-    <img class="img" :src = trackData.img>
-    <div class="Name">{{ trackData.title }}</div>
-    <div class="artist">{{ trackData.artist }}</div>
+    <img class="img" :src = 'album.albumImg'>
+    <div class="Name">{{ title }}</div>
+    <div class="artist">{{ album.albumDescription }}</div>
     <Transition>
     <div class="play" v-show="show" @click="playSong">
         <play-triangle class="play-triangle"></play-triangle>
@@ -22,16 +22,20 @@ export default {
     }
   },
   props:{
-    trackData:{
+    album:{
       type:Object,
       required:true,
 
+    },
+    title:{
+      type:String
     }
   },
   methods:{
 
     playSong(){
-      this.$emit('play',this.trackData)
+      let track = this.album.tracks[0]
+      this.$emit('play',{link:track.link,title:track.title,img:track.img,artist:track.artist,album:this.album})
 
     }
   }
@@ -73,12 +77,18 @@ export default {
 }
 .artist{
   font-family: Montserrat;
-  color: white;
+  color: rgb(179,179,179);
   position:relative;
-  top: 13.7%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  max-height: 25px;
+  top: 30px;
   left:11%;
-  max-height: 40px;
-  font-size: 12px;
+  max-width: 150px;
+  font-size: 10px;
   font-weight: inherit;
 }
 .play{

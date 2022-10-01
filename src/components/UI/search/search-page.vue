@@ -61,13 +61,16 @@ export default {
   min-height: 32px;
   background-color: rgba(16,16,16,0.5);
   display: inline-block;
-  position: relative;
+  position: fixed;
+  top:0;
+  z-index: 2;
 
 }
 
 .Root__main-content{
   height: 100%;
   background-color: rgb(29,29,29);
+  padding-top: 50px;
   width: 100%;
   overflow-y:auto;
   overflow-x: hidden ;

@@ -5,13 +5,20 @@
       <svg class="back"></svg>
       <svg class="front"></svg>
     </div>
+
+    <play-list v-if="isPlaylist" :playlist="currentPlaylist"
+               @play ="(data)=>playSong(data)"
+
+    ></play-list>
+    <div v-if="!isPlaylist">
     <content-section
         @play ="(data)=>playSong(data)"
-        v-bind:sectionName="sectionNames[item]"
-        v-for="item of [...Array(3).keys()]"
+        :sectionName="item"
+        v-for="item of sectionNames"
         :key = item
-        :tracks = tracksList.slice(8*item,8*item+8)
     ></content-section>
+    </div>
+
 
 
   </div>
@@ -20,22 +27,27 @@
 
 <script>
 import ContentSection from "@/components/UI/home/MainContentSection";
+import PlayList from "@/components/UI/home/Playlist";
 export default {
   name: "home-page",
-  components:{ContentSection},
+  components:{PlayList, ContentSection},
   data(){
     return {
 
       tracksList: this.$store.state.tracks,
       sectionNames:['Spotify Playlists','Sleep','Focus'],
       audioSrc:'',
+      currentPlaylist:undefined,
+      isPlaylist:false
 
     }
   },
   methods:{
     playSong(data){
-
+      console.log(this.currentPlaylist)
+      this.currentPlaylist = data.album
       this.audioSrc = data.link
+      this.isPlaylist = true
       this.$emit('update:src',data)
 
     }
@@ -52,16 +64,19 @@ export default {
   min-height: 32px;
   background-color: rgba(16,16,16,0.5);
   display: inline-block;
-  position: relative;
+  position: fixed;
+  top:0;
+  z-index: 2;
 
 }
 
 .Root__main-content{
+
   height: 100%;
   background-color: rgb(29,29,29);
   width: 100%;
   overflow-y:auto;
-  overflow-x: hidden ;
+  overflow-x: hidden;
 }
 .back{
   width: 24px;

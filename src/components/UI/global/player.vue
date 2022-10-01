@@ -54,6 +54,11 @@ export default {
     artist:{type:String},
     img:{type:String},
   },
+  computed:{
+    isPlaying(){
+      return this.$store.state.audio.isPlaying
+    }
+  },
   watch:{
     isPlaying:function () {
 
@@ -77,7 +82,7 @@ export default {
         this.progressHandler()
       }
       this.audio.play();
-      this.isPlaying = true;
+      this.$store.commit('setPlayingStatus',true)
 
     },
     isDragging: function (){
@@ -101,7 +106,6 @@ export default {
     return {
       audio: new Audio(),
       playPause:'play',
-      isPlaying:false,
       currentTime:0,
       duration:0,
       thumbOffset:0,
@@ -111,7 +115,8 @@ export default {
   },
   methods:{
     togglePlaying(){
-      this.isPlaying =!this.isPlaying
+      this.$store.commit('setPlayingStatus',!this.$store.state.audio.isPlaying)
+
     },
     widthHandler(e){
       this.playerWidth =e.target.document.documentElement.clientWidth*0.4
