@@ -11,7 +11,8 @@ export default createStore({
             qeque:[],
             prevtracks:[]
         },
-        isPlaylist:false
+        isPlaylist:false,
+        liked:new Set()
     },
     getters:{
 
@@ -68,6 +69,10 @@ export default createStore({
         },
         setIsPlaylist(state,val){
             state.isPlaylist = val
+        },
+        addToLiked(state,obj){
+            state.liked.add(obj)
+            state.albums["Uniquely Yours"]["Liked Songs"].tracks = Array.from(state.liked);
         }
     },
     actions:{

@@ -40,7 +40,7 @@ export default {
     return {
 
       tracksList: this.$store.state.tracks,
-      sectionNames:['Spotify Playlists','Sleep','Focus'],
+      sectionNames:['Spotify Playlists','Uniquely Yours'],
       audioSrc:'',
       currentPlaylist:undefined,
 

@@ -1,5 +1,9 @@
 <template>
-<div class="track" ref="track" @mouseover="selected=true" @mouseleave="selected=false" @click="$emit('play',data)">
+<div class="track" ref="track" @mouseover="selected=true" @mouseleave="selected=false" @click="(event)=>{
+  if (event.target.className ==='track'){
+    $emit('play',data)
+  }
+  }">
   <div class="id"
        v-show="!selected"
   >{{this.$.vnode.key+1}}</div>
@@ -12,7 +16,9 @@
   <div class="play-triangle"
        v-show="selected"
   ></div>
-  <like-icon class="like"></like-icon>
+  <like-icon class="like"
+             @click="$store.commit('addToLiked',data)"
+  ></like-icon>
   <label class="duration">{{ Math.floor(Math.round(audio.duration) /60) || 0}}:{{('0'+(Math.round(audio.duration)||0)%60).slice(-2)}}</label>
 
 </div>

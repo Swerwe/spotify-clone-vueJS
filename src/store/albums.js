@@ -762,7 +762,15 @@ export const albums = {
                     ]
                 }
             },
-            "Sleep":{
+            "Uniquely Yours":{
+                "Liked Songs":{
+                    albumTitle:"Liked Songs",
+                    albumImg: 'https://i1.sndcdn.com/artworks-y6qitUuZoS6y8LQo-5s2pPA-t500x500.jpg',
+                    headImg:'https://i1.sndcdn.com/artworks-y6qitUuZoS6y8LQo-5s2pPA-t500x500.jpg',
+                    albumDescription:'Your Liked Songs',
+                    tracks:[]
+
+                }
 
             },
             "Focus":{

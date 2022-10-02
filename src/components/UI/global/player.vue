@@ -6,8 +6,10 @@
     <div class="time current">{{ Math.floor(Math.round(currentTime) /60  || 0) }}:{{('0'+Math.round(this.audio.currentTime || 0)%60  ).slice(-2)}}</div>
     <shuffle-icon class="player-button"></shuffle-icon>
     <prev-icon class="player-button" @click="$store.commit('prevTrack')"></prev-icon>
-    <play-icon class="player-button" @click="togglePlaying" v-if="!isPlaying"></play-icon>
-    <stop-icon class="player-button" @click="togglePlaying" v-if="isPlaying"></stop-icon>
+    <div class="play" @click="togglePlaying">
+      <svg v-if="!isPlaying" class="play-triangle"  viewBox="0 0 24 24" width="16" height="16" xmlns="http://www.w3.org/2000/svg"><polygon points="21.57 12 5.98 3 5.98 21 21.57 12" fill="black"></polygon></svg>
+      <svg v-if="isPlaying" viewBox="0 0 16 16" width="16" height="16" xmlns="http://www.w3.org/2000/svg"><path fill="none" d="M0 0h16v16H0z"></path><path d="M3 2h3v12H3zm7 0h3v12h-3z" fill="black"></path></svg>
+    </div>
     <next-icon class="player-button" @click="$store.commit('nextTrack')"></next-icon>
     <loop-icon class="player-button"></loop-icon>
     <div class="bar">
@@ -37,8 +39,7 @@
 </template>
 
 <script>
-import PlayIcon from "@/components/UI/icons/PlayIcon";
-import StopIcon from "@/components/UI/icons/StopIcon";
+
 import NextIcon from "@/components/UI/icons/NextIcon";
 import PrevIcon from "@/components/UI/icons/PrevIcon";
 import ShuffleIcon from "@/components/UI/icons/ShuffleIcon";
@@ -47,7 +48,7 @@ import PlaylistIcon from "@/components/UI/icons/playlistIcon";
 import VolumeIcon from "@/components/UI/icons/volumeIcon";
 export default {
   name: "custom-player",
-  components: {VolumeIcon, PlaylistIcon, LoopIcon, ShuffleIcon, PrevIcon, NextIcon, StopIcon, PlayIcon},
+  components: {VolumeIcon, PlaylistIcon, LoopIcon, ShuffleIcon, PrevIcon, NextIcon,},
 
   computed:{
     isPlaying(){
@@ -74,6 +75,7 @@ export default {
       this.audio = new Audio()
       this.artist = this.$store.state.audio.audioArtist
       this.title  = this.$store.state.audio.audioTitle
+      this.audio.addEventListener('ended',()=>{this.$store.commit('nextTrack')})
       this.img = this.$store.state.audio.audioImg
       this.audio.setAttribute('preload','none')
       this.audio.src = this.src
@@ -267,5 +269,13 @@ export default {
   left: 70px;
   top:30px
 }
-
+.play{
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 20px;
+  background: white;
+}
 </style>
