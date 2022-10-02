@@ -7,7 +7,7 @@
         :key="album"
         :album="album"
         :title="album.albumTitle"
-        @play="(data)=>$emit('play',data)"></component-item>
+        @play="([data,title])=>$emit('playplaylist',[data,sectionName,title])"></component-item>
   </section>
 </template>
 

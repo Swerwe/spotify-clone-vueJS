@@ -35,7 +35,8 @@ export default {
 
     playSong(){
       let track = this.album.tracks[0]
-      this.$emit('play',{link:track.link,title:track.title,img:track.img,artist:track.artist,album:this.album})
+      let data = {link:track.link,title:track.title,img:track.img,artist:track.artist,album:this.album}
+      this.$emit('play',[data,this.title])
 
     }
   }

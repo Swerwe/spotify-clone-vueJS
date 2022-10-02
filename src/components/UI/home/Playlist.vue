@@ -1,11 +1,17 @@
 <template>
   <div id="playlist">
-    <div class="head" :style="{'background-image':`url(${playlist.headImg})`}">
+    <div v-if="playlist.headImg!=playlist.albumImg" class="head" :style="{'background-image':`url(${playlist.headImg})`}">
       <h3 class="playlist__span">PLAYLIST</h3>
       <h1 class="albumTitle">{{playlist.albumTitle}}</h1>
       <span class="description">{{playlist.albumDescription}}</span>
       <div class="info">Spotify, {{playlist.tracks.length}} songs</div>
-
+    </div>
+    <div v-if="playlist.headImg==playlist.albumImg" class="head">
+      <div class="albumImg" :style="{'background-image':`url(${playlist.headImg})`}"></div>
+      <h3 class="playlist__span right">PLAYLIST</h3>
+      <h1 class="albumTitle right">{{playlist.albumTitle}}</h1>
+      <span class="description right">{{playlist.albumDescription}}</span>
+      <div class="info right">Spotify, {{playlist.tracks.length}} songs</div>
     </div>
     <div class="content" :style="{'background': `linear-gradient(rgba(${color.r},${color.g},${color.b},0.25) 15%, rgb(29,29,29) 38%)`}">
       <div class="playbutn" @click="toggleIsPlaying">
@@ -22,6 +28,7 @@
           <svg role="img" height="16" width="16" viewBox="0 0 16 16" class="Svg-ytk21e-0 jAKAlG"><path fill="rgba(170,170,170)" d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8z"></path><path fill="rgba(170,170,170)" d="M8 3.25a.75.75 0 01.75.75v3.25H11a.75.75 0 010 1.5H7.25V4A.75.75 0 018 3.25z"></path></svg>
                   </div>
       </div>
+      <div class="track__content">
       <search-track
           v-for="track of playlist.tracks"
           :key="playlist.tracks.indexOf(track)"
@@ -33,6 +40,8 @@
             }
           "
       ></search-track>
+        <div class="mrg"></div>
+      </div>
     </div>
   </div>
 
@@ -161,12 +170,22 @@ export default {
   position: relative;
   top:90px;
 }
+.playlist__span.right{
+  position: relative;
+  left:250px;
+  top:-45px;
+}
 .albumTitle{
   height: 20px;
   position: relative;
   top:100px;
   font-size: 60px;
   font-weight: bolder;
+}
+.albumTitle.right{
+  position: relative;
+  left:250px;
+  top:-30px
 }
 .description{
   text-overflow: ellipsis;
@@ -177,6 +196,11 @@ export default {
   top: 190px;
   z-index: 2;
   color: rgb(220,220,220);
+}
+.description.right{
+  position: relative;
+  left:250px;
+  top:30px
 }
 .playbutn{
   width: 48px;
@@ -247,8 +271,27 @@ export default {
 }
 .info{
   position: relative;
-  font-size: 14px;
+  font-size: 11px;
+  height: 10px;
   top:200px;
   left: 10px;
+}
+.info.right{
+  top:50px;
+  left: 255px;
+}
+.albumImg{
+  width: 180px;
+  height: 180px;
+  position: relative;
+  top: 100px;
+  left: 30px;
+  background-size: cover;
+}
+.mrg{
+  height: 10%;
+  width: 90%;
+  position: relative;
+  display: inline-block;
 }
 </style>

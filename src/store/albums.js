@@ -314,7 +314,7 @@ export const albums = {
                     albumTitle: "RapCaviar",
                     albumImg: 'https://i.scdn.co/image/ab67706f00000002d28cc600e29364a65d463ee2',
                     albumDescription:'New music from Roddy Ricch, Kodak Black and Quavo & Takeoff.',
-                    headImg:'https://i.scdn.co/image/ab6768640000fe8963a39daf3809565c89f48f86',
+                    headImg:'https://i.scdn.co/image/ab6768640000fe89682e360585bfdf970ad75bc3',
                     tracks: [
                         {
                             link: 'https://s1.muzati.net/files/mp3/dayana_-_joanna_muzati.net_128.mp3',
@@ -441,7 +441,7 @@ export const albums = {
                 "Chill Hits": {
                     albumTitle:"Chill Hits",
                     albumImg: 'https://i.scdn.co/image/ab67706f000000021b0bc190b2c0f8d47684f5a5',
-                    headImg:'https://i.scdn.co/image/ab6768640000fe8963a39daf3809565c89f48f86',
+                    headImg:'https://i.scdn.co/image/ab6768640000fe890c2a37fbe7704b807368942c',
                     albumDescription:'Kick back to the best new and recent chill hits.',
                     tracks: [
                         {
@@ -569,7 +569,7 @@ export const albums = {
                 "Mega Hit Mix": {
                     albumTitle: "Mega Hit Mix",
                     albumImg: 'https://i.scdn.co/image/ab67706f00000002db32a17c1f5291b19317b62e',
-                    headImg:'https://i.scdn.co/image/ab6768640000fe8963a39daf3809565c89f48f86',
+                    headImg:'https://i.scdn.co/image/ab67706f00000002db32a17c1f5291b19317b62e',
                     albumDescription:'A mega mix of 20 favorites from the last few years!',
                     tracks: [
                         {
@@ -637,7 +637,7 @@ export const albums = {
                 "All Out 2010s": {
                     albumTitle:"All Out 2010s",
                     albumImg: 'https://i.scdn.co/image/ab67706f00000002f95e0d3dd06dbadb407ef766',
-                    headImg:'https://i.scdn.co/image/ab6768640000fe8963a39daf3809565c89f48f86',
+                    headImg:'https://i.scdn.co/image/ab67706f00000002f95e0d3dd06dbadb407ef766',
                     albumDescription:'The biggest songs of the 2010s.',
                     tracks: [{
                         link: 'https://s1.muzati.net/files/mp3/scooter_-_shake_that_(dj_safiter_remix)_muzati.net_128.mp3',
@@ -769,6 +769,8 @@ export const albums = {
 
             }
         }
-    }
+    },
+
+
 
 }

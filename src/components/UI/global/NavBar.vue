@@ -49,6 +49,7 @@ export default {
   methods:{
     clickHandler(e){
       this.$emit("select",[e.target.innerText.replaceAll(/\s/g,'').toLowerCase(),true])
+      this.$store.commit('setIsPlaylist',false)
       for (let key in this.navSelects) {
         this.$refs[key].classList.remove('selected')
         if (this.navSelects[key]){

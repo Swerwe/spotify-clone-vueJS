@@ -7,8 +7,11 @@ export default createStore({
             audioTitle:'',
             audioArtist:'',
             audioImg:'',
-            isPlaying:false
+            isPlaying:false,
+            qeque:[],
+            prevtracks:[]
         },
+        isPlaylist:false
     },
     getters:{
 
@@ -28,6 +31,43 @@ export default createStore({
         },
         setPlayingStatus(state,val){
             state.audio.isPlaying = val;
+        },
+        clearQeque(state){
+            state.audio.qeque = []
+        },
+        setQeque(state,arr){
+            state.audio.qeque = arr
+        },
+        shiftQeque(state){
+            state.audio.qeque.shift()
+        },
+        updateAudio(state,obj){
+            state.audio.audioSrc = obj.link;
+            state.audio.audioImg = obj.img;
+            state.audio.audioTitle = obj.title;
+            state.audio.audioArtist = obj.artist;
+        },
+        nextTrack(state){
+            if (! state.audio.qeque) return
+            let current = {link:state.audio.audioSrc,img:state.audio.audioImg,title:state.audio.audioTitle,artist:state.audio.audioArtist};
+            state.audio.prevtracks.push(current)
+            this.commit('updateAudio',state.audio.qeque[0])
+            state.audio.qeque.shift()
+            console.log(state.audio.prevtracks[state.audio.prevtracks.length-1].title,state.audio.qeque[0].title)
+        },
+        prevTrack(state){
+            //говнокод
+            if (! state.audio.prevtracks) return
+            let current = {link:state.audio.audioSrc,img:state.audio.audioImg,title:state.audio.audioTitle,artist:state.audio.audioArtist};
+            state.audio.qeque.unshift(current)
+            this.commit('updateAudio',state.audio.prevtracks[state.audio.prevtracks.length-1])
+            state.audio.prevtracks.pop()
+            console.log(state.audio.prevtracks[state.audio.prevtracks.length-1].title,state.audio.qeque[0].title)
+
+
+        },
+        setIsPlaylist(state,val){
+            state.isPlaylist = val
         }
     },
     actions:{

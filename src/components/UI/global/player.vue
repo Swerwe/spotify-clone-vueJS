@@ -5,10 +5,10 @@
     <div class="artist">{{artist}}</div>
     <div class="time current">{{ Math.floor(Math.round(currentTime) /60  || 0) }}:{{('0'+Math.round(this.audio.currentTime || 0)%60  ).slice(-2)}}</div>
     <shuffle-icon class="player-button"></shuffle-icon>
-    <prev-icon class="player-button"></prev-icon>
+    <prev-icon class="player-button" @click="$store.commit('prevTrack')"></prev-icon>
     <play-icon class="player-button" @click="togglePlaying" v-if="!isPlaying"></play-icon>
     <stop-icon class="player-button" @click="togglePlaying" v-if="isPlaying"></stop-icon>
-    <next-icon class="player-button"></next-icon>
+    <next-icon class="player-button" @click="$store.commit('nextTrack')"></next-icon>
     <loop-icon class="player-button"></loop-icon>
     <div class="bar">
       <input type="range" class="slider" min="1"
@@ -48,15 +48,13 @@ import VolumeIcon from "@/components/UI/icons/volumeIcon";
 export default {
   name: "custom-player",
   components: {VolumeIcon, PlaylistIcon, LoopIcon, ShuffleIcon, PrevIcon, NextIcon, StopIcon, PlayIcon},
-  props:{
-    src:{type:String},
-    title:{type:String},
-    artist:{type:String},
-    img:{type:String},
-  },
+
   computed:{
     isPlaying(){
       return this.$store.state.audio.isPlaying
+    },
+    src(){
+      return this.$store.state.audio.audioSrc
     }
   },
   watch:{
@@ -71,9 +69,12 @@ export default {
       }
     },
     src:function updateAudio(){
-
+      console.log(2)
       this.audio.pause()
       this.audio = new Audio()
+      this.artist = this.$store.state.audio.audioArtist
+      this.title  = this.$store.state.audio.audioTitle
+      this.img = this.$store.state.audio.audioImg
       this.audio.setAttribute('preload','none')
       this.audio.src = this.src
       this.audio.ontimeupdate = ()=>{
@@ -111,6 +112,10 @@ export default {
       thumbOffset:0,
       isDragging:false,
       muted:false,
+      title:'',
+      artist:'',
+      img:''
+
     }
   },
   methods:{

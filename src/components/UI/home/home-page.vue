@@ -2,17 +2,17 @@
   <div class="Root__main-content">
 
     <div class="Root__top-bar" >
-      <svg class="back"></svg>
+      <svg class="back" @click="$store.commit('setIsPlaylist',false)"></svg>
       <svg class="front"></svg>
     </div>
 
     <play-list v-if="isPlaylist" :playlist="currentPlaylist"
-               @play ="(data)=>playSong(data)"
+               @play ="(data)=>$emit('update:src',data)"
 
     ></play-list>
     <div v-if="!isPlaylist">
     <content-section
-        @play ="(data)=>playSong(data)"
+        @playplaylist ="(data)=>playSong(data)"
         :sectionName="item"
         v-for="item of sectionNames"
         :key = item
@@ -31,6 +31,11 @@ import PlayList from "@/components/UI/home/Playlist";
 export default {
   name: "home-page",
   components:{PlayList, ContentSection},
+  computed:{
+    isPlaylist(){
+      return this.$store.state.isPlaylist
+    }
+  },
   data(){
     return {
 
@@ -38,16 +43,18 @@ export default {
       sectionNames:['Spotify Playlists','Sleep','Focus'],
       audioSrc:'',
       currentPlaylist:undefined,
-      isPlaylist:false
 
     }
   },
   methods:{
-    playSong(data){
-      console.log(this.currentPlaylist)
+    playSong([data,name,title]){
       this.currentPlaylist = data.album
       this.audioSrc = data.link
-      this.isPlaylist = true
+      this.$store.commit('setIsPlaylist',true)
+      this.$store.commit('setAudioSrc',this.audioSrc)
+      let queue = Array.from(this.$store.state.albums[name][title].tracks)
+      this.$store.commit('setQeque',queue)
+      this.$store.commit('shiftQeque')
       this.$emit('update:src',data)
 
     }
